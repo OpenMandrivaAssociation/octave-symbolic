@@ -1,8 +1,8 @@
-%define octpkg symbolic
+%global octpkg symbolic
 
 Summary:	Symbolic toolbox for Octave
 Name:		octave-%{octpkg}
-Version:	2.5.0
+Version:	2.9.0
 Release:	1
 Source0:	http://downloads.sourceforge.net/octave/%{octpkg}-%{version}.tar.gz
 License:	GPLv3+
@@ -10,10 +10,13 @@ Group:		Sciences/Mathematics
 Url:		https://octave.sourceforge.io/%{octpkg}/
 BuildArch:	noarch
 
-BuildRequires:	octave-devel >= 4.0.0
+BuildRequires:	octave-devel >= 4.2.0
+BuildRequires:	pkgconfig(python3)
+BuildRequires:	python3dist(mpmath)
+BuildRequires:	python3dist(sympy)
 
 Requires:	octave(api) = %{octave_api}
-Requires:	python-sympy >= 1.0
+Requires:	python3dist(sympy)
 
 Requires(post): octave
 Requires(postun): octave
@@ -28,14 +31,29 @@ required.  Compatibility with other symbolic toolboxes is intended.
 
 This package is part of community Octave-Forge collection.
 
+%files
+%license COPYING
+%doc NEWS
+%dir %{octpkgdir}
+%{octpkgdir}/*
+%{_metainfodir}/*.metainfo.xml
+
+#---------------------------------------------------------------------------
+
 %prep
-%setup -qcT
+%autosetup -p1 -n %{octpkg}-%{version}
+
+# remove backup files
+#find . -name \*~ -delete
 
 %build
-%octave_pkg_build -T
+%octave_pkg_build
 
 %install
 %octave_pkg_install
+
+%check
+%octave_pkg_check
 
 %post
 %octave_cmd pkg rebuild
@@ -45,10 +63,4 @@ This package is part of community Octave-Forge collection.
 
 %postun
 %octave_cmd pkg rebuild
-
-%files
-%dir %{octpkgdir}
-%{octpkgdir}/*
-%doc %{octpkg}-%{version}/NEWS
-%doc %{octpkg}-%{version}/COPYING
 
