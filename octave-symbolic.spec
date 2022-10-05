@@ -2,9 +2,9 @@
 
 Summary:	Symbolic toolbox for Octave
 Name:		octave-%{octpkg}
-Version:	2.9.0
+Version:	3.0.1
 Release:	1
-Source0:	http://downloads.sourceforge.net/octave/%{octpkg}-%{version}.tar.gz
+Source0:	https://downloads.sourceforge.net/octave/%{octpkg}-%{version}.tar.gz
 License:	GPLv3+
 Group:		Sciences/Mathematics
 Url:		https://octave.sourceforge.io/%{octpkg}/
