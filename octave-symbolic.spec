@@ -1,33 +1,38 @@
 %global octpkg symbolic
 
 Summary:	Symbolic toolbox for Octave
-Name:		octave-%{octpkg}
-Version:	3.0.1
+Name:		octave-symbolic
+Version:	3.1.1
 Release:	1
-Source0:	https://downloads.sourceforge.net/octave/%{octpkg}-%{version}.tar.gz
 License:	GPLv3+
 Group:		Sciences/Mathematics
-Url:		https://packages.octave.org/%{octpkg}/
-BuildArch:	noarch
+#Url:		https://packages.octave.org/symbolic/
+Url:		https://github.com/cbm755/octsympy/
+Source0:	https://github.com/cbm755/octsympy/releases/download/v%{version}/symbolic-%{version}.tar.gz
 
-BuildRequires:	octave-devel >= 4.2.0
-BuildRequires:	pkgconfig(python3)
-BuildRequires:	python3dist(mpmath)
-BuildRequires:	python3dist(sympy)
+BuildRequires:  octave-devel >= 5.1.0
+BuildRequires:	pkgconfig(python)
+BuildRequires:	python%{pyver}dist(mpmath)
+BuildRequires:	python%{pyver}dist(sympy)
 
 Requires:	octave(api) = %{octave_api}
-Requires:	python3dist(sympy)
+Requires:	python%{pyver}dist(sympy)
 
 Requires(post): octave
 Requires(postun): octave
 
+BuildArch:	noarch
+
 %description
-The Octave-Forge Symbolic package adds symbolic calculation
-features to GNU Octave.  These include common Computer Algebra System tools
-such as algebraic operations, calculus, equation solving, Fourier and Laplace
-transforms, variable precision arithmetic and other features.  Internally,
-the package uses [SymPy](www.sympy.org), but no knowledge of Python is
-required.  Compatibility with other symbolic toolboxes is intended.
+Symbolic calculation features, including common Computer Algebra 
+System tools such as algebraic operations, calculus, equation 
+solving, Fourier and Laplace transforms, variable precision 
+arithmetic and other features.
+
+Internally, the package uses SymPy, but no knowledge of Python is
+required.
+
+Compatibility with other symbolic toolboxes is intended.
 
 %files
 %license COPYING
@@ -40,9 +45,6 @@ required.  Compatibility with other symbolic toolboxes is intended.
 
 %prep
 %autosetup -p1 -n %{octpkg}-%{version}
-
-# remove backup files
-#find . -name \*~ -delete
 
 %build
 %octave_pkg_build
