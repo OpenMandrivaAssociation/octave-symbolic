@@ -2,8 +2,8 @@
 
 Summary:	Symbolic toolbox for Octave
 Name:		octave-symbolic
-Version:	3.2.1
-Release:	2
+Version:	3.2.2
+Release:	1
 License:	GPLv3+
 Group:		Sciences/Mathematics
 #Url:		https://packages.octave.org/symbolic/
@@ -44,7 +44,7 @@ Compatibility with other symbolic toolboxes is intended.
 #---------------------------------------------------------------------------
 
 %prep
-%autosetup -p1 -n %{octpkg}-%{version}
+%autosetup -p1 -n symbolic-3.2.2
 
 %build
 %octave_pkg_build
