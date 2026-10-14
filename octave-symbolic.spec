@@ -3,7 +3,7 @@
 Summary:	Symbolic toolbox for Octave
 Name:		octave-symbolic
 Version:	3.2.2
-Release:	1
+Release:	2
 License:	GPLv3+
 Group:		Sciences/Mathematics
 #Url:		https://packages.octave.org/symbolic/
@@ -11,7 +11,7 @@ Url:		https://github.com/cbm755/octsympy/
 Source0:	https://github.com/cbm755/octsympy/releases/download/v%{version}/symbolic-%{version}.tar.gz
 
 BuildRequires:  octave-devel >= 5.1.0
-BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(python3)
 BuildRequires:	python%{pyver}dist(mpmath)
 BuildRequires:	python%{pyver}dist(sympy)
 
